@@ -1,5 +1,6 @@
 body{
   background-image: url("../images/background.gif");
+background-size:cover; 
   color: white
 }
 .backgroundgrey{

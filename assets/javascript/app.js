@@ -45,6 +45,8 @@ var final = ""
 var doh = new Audio("./assets/sounds/doh.mp3")
 var dohdoh = new Audio("./assets/sounds/dohdoh.mp3")
 var start = new Audio("./assets/sounds/damned.mp3")
+var buzzer = new Audio("./assets/sounds/buzzer.mp3")
+var ticktock = new Audio("./assets/sounds/ticktock.mp3")
 
 
 $(".start").on("click",function() {
@@ -129,20 +131,24 @@ function count(){
   if (timesmaller < 1){
     timesmaller = 10
   }
-
+  if(time <= 60){
+    ticktock.play()
+  }
   $(".timer").text("Time left to Guess: "+firstnumber+"."+secondnumber)
    if (time == 0){
     clearInterval(interval)
-  var loserdiv = $("<div>")
-  var losertext = $("<div>")
-  loserdiv.addClass("loser row mt-5 temp")
-  losertext.addClass("col-md-12 bg-warning")
-  losertext.append("<h1>You have run out of time!</h1>")
-  loserdiv.append(losertext)
-  $(".main").append(loserdiv)
-  wrongGuesses += 1
-  timeOut = setTimeout(newQuestion,3000)
-  final = setTimeout(finalScreen,2500)
+    var loserdiv = $("<div>")
+    var losertext = $("<div>")
+    loserdiv.addClass("loser row mt-5 temp")
+    losertext.addClass("col-md-12 bg-warning")
+    losertext.append("<h1>You have run out of time!</h1>")
+    loserdiv.append(losertext)
+    $(".main").append(loserdiv)
+    wrongGuesses += 1
+    timeOut = setTimeout(newQuestion,3000)
+    final = setTimeout(finalScreen,2500)
+    buzzer.play()
+
   }
 }
 
