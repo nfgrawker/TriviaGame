@@ -51,7 +51,8 @@ var trivia6 = {
 var time = 300;
 var interval = "";
 var questionArray = [trivia1, trivia2, trivia3, trivia4, trivia5, trivia6];
-var currentQuestion = 0
+var currentQuestion = 0;
+var answerArray = ["answer1","answer2","answer3","answer4"];
 
 $(".start").on("click",function() {
   newQuestion()
@@ -61,16 +62,29 @@ function newQuestion(){
   time = 300;
   interval = setInterval(count, 100);
   var newTrivia = $("<div>");
-  var answer = $("<div>")
-  var button = $("<div>")
-  var answerText = $("<div>")
-  $(".main").empty()
-  newTrivia.addClass("col-md-12 question text-center")
+
+  $(".minheader").empty()
   newTrivia.append("<h2>"+questionArray[currentQuestion].question+"</h2>")
-  $(".main").append(newTrivia)
-  answer.addClass("row mt-5")
-  button.addClass("col-md-3 button")
-  button.append('<button class="btn btn-info" type="button" name="button">Answer A</button>')
+  newTrivia.addClass("col-md-12 question text-center temp")
+  $(".minheader").append(newTrivia)
+
+for (i in answerArray){
+    var currentanswer = answerArray[i]
+    var answer = $("<div>")
+    var button = $("<div>")
+    var answerText = $("<div>")
+    console.log(questionArray[currentQuestion])
+    answer.addClass("row mt-1 temp")
+    button.addClass("col-md-3 button temp")
+    button.append('<button class="btn btn-info" type="button" name="button">Answer A</button>')
+    answerText.addClass("col-md-9 temp")
+    answerText.val("answer"+i)
+    answerText.append("<h4>- - - - - - - - -"+questionArray[currentQuestion][currentanswer]+"</h4>")
+    answer.append(button)
+    answer.append(answerText)
+    $(".main").append(answer)
+  }
+
 
 
   }
