@@ -70,7 +70,6 @@ for (i in answerArray){
     var answer = $("<div>")
     var button = $("<div>")
     var answerText = $("<div>")
-    console.log(questionArray[currentQuestion])
     answer.addClass("row mt-1 temp")
     button.addClass("col-md-3 button temp")
     button.append('<button class="btn btn-info" value ="'+i+'" type="button" name="button">Answer '+answerLetters[i]+'</button>')
@@ -84,7 +83,6 @@ for (i in answerArray){
   $(".btn").on("click",function(){
     if (buttonBeenClicked == false){
     var value = $(this).val()
-    console.log("Jamaica")
     if (value == questionArray[currentQuestion].correct){
       var winnerdiv = $("<div>")
       var winnertext = $("<div>")
