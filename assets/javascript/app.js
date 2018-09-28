@@ -46,7 +46,7 @@ var doh = new Audio("./assets/sounds/doh.mp3")
 var dohdoh = new Audio("./assets/sounds/dohdoh.mp3")
 var start = new Audio("./assets/sounds/damned.mp3")
 var buzzer = new Audio("./assets/sounds/buzzer.mp3")
-var ticktock = new Audio("./assets/sounds/ticktock.mp3")
+
 
 
 $(".start").on("click",function() {
@@ -131,9 +131,6 @@ function count(){
   if (timesmaller < 1){
     timesmaller = 10
   }
-  if(time <= 60){
-    ticktock.play()
-  }
   $(".timer").text("Time left to Guess: "+firstnumber+"."+secondnumber)
    if (time == 0){
     clearInterval(interval)
@@ -158,12 +155,27 @@ function finalScreen(){
     clearInterval(interval)
     clearTimeout(timeOut)
   var finalDiv = $("<div>")
+  var newResetButton = $("<button>")
+  newResetButton.addClass("btn btn-danger reset")
+  newResetButton.text("Reset")
+  finalDiv.addClass("final")
   finalDiv.append("<h1>Score: "+score+"</h1>")
   finalDiv.append("<h1>Correct Guesses: "+correctGuesses+"</h1>")
   finalDiv.append("<h1>Wrong Guesses: "+wrongGuesses+"</h1>")
+  finalDiv.append(newResetButton)
   $('.main').append(finalDiv)
   $(".temp").remove()
   $(".timer").text("Time left to Guess: 0")
+    console.log("Done")
+  $(".reset").on("click",function(){
+    currentQuestion = -1
+    score = 0
+    wrongGuesses = 0
+    correctGuesses = 0
+    $(".final").remove()
+    newQuestion()
+
+  })
 }
 }
 
